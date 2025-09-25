@@ -9,11 +9,18 @@ namespace Interface31
     internal class Program
     {
 
-        class product
+        class product : IComparable<product>
         {
            public string Name { get;  set; }
            public int Price { get;  set; }
-           
+
+            public int CompareTo(product other)
+            {
+               //return this.Price - other.Price;
+               //return this.Price.CompareTo(other.Price);
+               return this.Name.CompareTo(other.Name);
+            }
+
             public override string ToString()
             {
                 //return Name + " : " + Price + "원";
@@ -30,8 +37,9 @@ namespace Interface31
                 new product() { Name = "수박", Price = 4000 },
                 new product() { Name = "참외", Price = 5000 },
             };
+
             //정렬
-            product.Sort();
+            products.Sort();
             foreach (var item in products)
             {
                 Console.WriteLine(item);
